@@ -1,0 +1,92 @@
+﻿@model PagedList.IPagedList<Model.EF.Employee>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Employee Manager
+}
+
+@using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+{
+    <div class="d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control bg-white border-0 small" placeholder="Search for..."
+                   aria-label="Search" aria-describedby="basic-addon2" value="@ViewBag.SearchString" name="searchString">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Role</th>
+                        <th>Shop</th>
+                        <th>Status</th>
+                        <th>#</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.empId">
+
+                            <td>@item.empId</td>
+                            <td>@item.empName</td>
+                            <td>@(item.gender == true ? "Male" : "Female")</td>
+                            <td>@item.email</td>
+                            <td>@item.phone</td>
+                            <td>@item.dateStart</td>
+                            <td>@item.dateEnd</td>
+                            <td>@item.Role.roleName</td>
+                            <td>@item.Shop.shopName</td>
+                            <td>@(item.status == true ? "Active" : "Locked")</td>
+                            @*<td><a href="#" class="btn-active" data-id="@item.ID">@Html.Raw(item.Status ? "<strong>Kích hoạt</strong>" : "Khoá")</a></td>*@
+                            <td>
+                                @*<a href="/Admin/Employee/Edit/@item.empId">Sửa</a>*@
+                                @Html.ActionLink("Edit", "Edit", new { id = @item.empId })
+                                |
+                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.empId }, new AjaxOptions
+                           {
+                               Confirm = "Do you delete record?",
+                               OnComplete = "$('#row_" + @item.empId + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+        </div>
+    </div>
+</div>
