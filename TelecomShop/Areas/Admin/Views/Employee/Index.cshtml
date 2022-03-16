@@ -11,10 +11,16 @@
     Employee Manager
 }
 
+@section jsFooter{
+
+    <script src="/Assets/admin/Assets/client/js/empController.js"></script>
+}
+
+
 @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
 {
-    <div class="d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group mb-3">
+    <div class="row">
+        <div class="input-group mb-3 col-md-4">
             <input type="text" class="form-control bg-white border-0 small" placeholder="Search for..."
                    aria-label="Search" aria-describedby="basic-addon2" value="@ViewBag.SearchString" name="searchString">
             <div class="input-group-append">
@@ -22,6 +28,11 @@
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
+        </div>
+        <div class="input-group mb-3 col-md-3">
+            <a href="/Admin/Employee/Create" class="btn btn-primary" type="submit">
+                <i class="fas fa-plus fa-sm"></i>  Add new
+            </a>
         </div>
     </div>
 }
@@ -67,7 +78,7 @@
                             <td>@item.dateEnd</td>
                             <td>@item.Role.roleName</td>
                             <td>@item.Shop.shopName</td>
-                            <td>@(item.status == true ? "Active" : "Locked")</td>
+                            <td><a href="#" class="btn-active" data-id="@item.empId">@(item.status == true ? "Active" : "Locked")</a></td>
                             @*<td><a href="#" class="btn-active" data-id="@item.ID">@Html.Raw(item.Status ? "<strong>Kích hoạt</strong>" : "Khoá")</a></td>*@
                             <td>
                                 @*<a href="/Admin/Employee/Edit/@item.empId">Sửa</a>*@

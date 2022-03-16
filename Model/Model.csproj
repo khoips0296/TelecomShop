@@ -59,7 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\BlogDao.cs" />
+    <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\EmployeeDao.cs" />
+    <Compile Include="Dao\PackDao.cs" />
+    <Compile Include="Dao\ProductDao.cs" />
+    <Compile Include="Dao\ShopDao.cs" />
     <Compile Include="EF\Bill.cs" />
     <Compile Include="EF\BillBuyProductOnly.cs" />
     <Compile Include="EF\BillDetail.cs" />

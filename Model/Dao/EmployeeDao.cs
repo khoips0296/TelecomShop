@@ -117,7 +117,13 @@ namespace Model.Dao
             }
         }
 
-
+        public bool ChangeStatus(long id)
+        {
+            var emp = db.Employees.Find(id);
+            emp.status = !emp.status;
+            db.SaveChanges();
+            return (bool)emp.status;
+        }
 
     }
 }

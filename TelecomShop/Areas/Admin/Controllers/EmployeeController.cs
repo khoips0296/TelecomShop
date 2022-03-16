@@ -47,7 +47,7 @@ namespace TelecomShop.Areas.Admin.Controllers
                 long id = dao.Insert(emp);
                 if (id > 0)
                 {
-                    //SetAlert("Thêm user thành công", "success");
+                    SetAlert("Insert success", "success");
                     return RedirectToAction("Index", "Employee");
                 }
                 else
@@ -63,6 +63,10 @@ namespace TelecomShop.Areas.Admin.Controllers
         {
             ViewBag.roleId = new SelectList(db.Roles, "roleId", "roleName");
             ViewBag.shopId = new SelectList(db.Shops, "shopId", "shopName");
+            var dao = new EmployeeDao();
+            var employee = dao.ViewDetail(id);
+
+            SetViewBag(employee.shopId);
             var emp = new EmployeeDao().ViewDetail(id);
             return View(emp);
         }
@@ -85,7 +89,7 @@ namespace TelecomShop.Areas.Admin.Controllers
                 var result = dao.Update(emp);
                 if (result)
                 {
-                    //SetAlert("Sửa user thành công", "success");
+                    SetAlert("Update success", "success");
                     return RedirectToAction("Index", "Employee");
                 }
                 else
@@ -106,6 +110,23 @@ namespace TelecomShop.Areas.Admin.Controllers
         }
 
 
+        public void SetViewBag(long? selectedId = null)
+        {
+            var dao = new ShopDao();
+            //ViewBag.CategoryID = new SelectList(dao.ListAll(), "ID", "Name", selectedId);
+            ViewBag.shopId = new SelectList(db.Shops, "shopId", "shopName",selectedId);
+        }
+
+
+        [HttpPost]
+        public JsonResult ChangeStatus(long id)
+        {
+            var result = new EmployeeDao().ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+            });
+        }
 
     }
 }
