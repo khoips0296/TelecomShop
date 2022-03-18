@@ -23,7 +23,7 @@ namespace Model.EF
         public string packName { get; set; }
 
         [Required]
-        [StringLength(500)]
+        //[StringLength(500)]
         public string Description { get; set; }
 
         public double Price { get; set; }

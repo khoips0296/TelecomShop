@@ -1,0 +1,143 @@
+﻿@model List<TelecomShop.Models.CartPackItem>
+
+@{
+    ViewBag.Title = "Detail Pack";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var packById = (Model.EF.Pack)ViewBag.packById;
+    var cate = (Model.EF.CategoryPack)ViewBag.cate;
+    var allCate = (List<Model.EF.CategoryPack>)ViewBag.allCate;
+    var CartPackItem = (List<TelecomShop.Models.CartPackItem>)ViewBag.CartPackItem;
+
+}
+
+<section class="page-title" style="background-image: url(/Assets/client/images/background/10.jpg)">
+    <div class="auto-container">
+        <h2>@cate.catName</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>@cate.catName</li>
+        </ul>
+    </div>
+</section>
+<!-- End Page Title -->
+<!-- Sidebar Page Container -->
+<section class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Content Side -->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="service-detail">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="/Assets/client/images/resource/service-2.jpg" alt="" />
+                        </div>
+
+
+                        <div class="lower-content">
+                            <h3>@packById.packName</h3>
+                            <h5 class="text-danger">$@packById.Price</h5>
+                            <p>We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleas ure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and  equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrink ing from toil and pain.</p>
+                            <blockquote>These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.</blockquote>
+                            <p>We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleas ure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and  equal blame belong.</p>
+                            <div class="two-column">
+                                <div class="row clearfix">
+                                    <!-- Column -->
+                                    <div class="column col-lg-6 col-md-6 col-sm-12">
+                                        <div class="lower-image">
+                                            <img src="/Assets/client/images/resource/service-3.png" alt="" />
+                                        </div>
+                                    </div>
+                                    <!-- Column -->
+                                    <div class="column col-lg-6 col-md-6 col-sm-12">
+                                        <h4>Benefit of Service</h4>
+                                        <p class="">@packById.Description</p>
+                                        <ul class="list-style-two">
+                                            <li>Better Decision Making</li>
+                                            <li>Cost Reduction</li>
+                                            <li>Improved Performance</li>
+                                            <li>Good and Services</li>
+                                            <li>Training session</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/Add-Cart-Pack?packId=@packById.packId&quantity=1" class="theme-btn btn-style-four"><span class="txt">Add to Cart</span></a>
+                            @foreach (var item in CartPackItem)
+                            {
+                                if (item.Pack.packId == packById.packId)
+                                {
+                                    <span class="text-danger"> This package already has a shopping cart </span>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Side -->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar sticky-top">
+
+                    <!-- Services Widget -->
+                    <div class="sidebar-widget services-widget">
+                        <div class="widget-content">
+                            <div class="sidebar-title">
+                                <h5>Our Services</h5>
+                            </div>
+                            @foreach (var item in allCate)
+                            {
+                                <ul class="service-list">
+                                    <li><a href="/Category/Pack/@item.catId">@item.catName</a></li>
+
+                                </ul>
+                            }
+
+                        </div>
+                    </div>
+
+                    <!-- Broucher Widget -->
+                    <div class="sidebar-widget broucher-widget">
+                        <div class="widget-content">
+                            <div class="sidebar-title">
+                                <h5>Our Company Brochure</h5>
+                            </div>
+                            <div class="text">Impress clients new and existing with elite construction brochures. Impress clients new and existing construction.</div>
+                            <a href="#" class="theme-btn btn-style-four"><span class="txt">Download PDF</span></a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Widget -->
+                    <div class="sidebar-widget contact-widget">
+                        <div class="widget-content">
+                            <div class="sidebar-title">
+                                <h5>Contact Us</h5>
+                            </div>
+                            <ul class="contact-info-widget">
+                                <li>
+                                    <span class="icon flaticon-map"></span>
+                                    503 Old Buffalo Street Northwest #205, New York-3087
+                                </li>
+                                <li>
+                                    <span class="icon flaticon-call"></span>
+                                    <a href="tel:+9684-32-45-789">+9684 32 45 789</a><br>
+                                    <a href="tel:+9684-32-45-789">+9684 32 45 789</a>
+                                </li>
+                                <li>
+                                    <span class="icon flaticon-email-1"></span>
+                                    <a href="mailto:infoname@gmail.com">infoname@gmail.com</a><br>
+                                    <a href="www.yourname.html">www.yourname.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Sidebar Page Container -->

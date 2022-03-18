@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Category Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var allCate = (List<Model.EF.CategoryPack>)ViewBag.allCate;
+    var cate = (Model.EF.CategoryPack)ViewBag.cate;
+    var listProductByCat = (List<Model.EF.Product>)ViewBag.listProductByCat;
+}
+
+<section class="page-title" style="background-image: url(/Assets/client/images/background/8.jpg)">
+    <div class="auto-container">
+        <h2>Products</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>Products</li>
+        </ul>
+    </div>
+</section>
+<!-- End Page Title -->
+<!-- Shop Page Section -->
+<section class="shop-page-section">
+    <div class="auto-container">
+
+        <!-- Sort By -->
+        <div class="items-sorting">
+            <div class="row clearfix">
+                <div class="results-column pull-left col-lg-6 col-md-12 col-sm-12">
+                    <h5>Showing 1–12 of 24 results</h5>
+                </div>
+                <div class="select-column clearfix pull-right col-lg-6 col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <select name="sort-by">
+                            <option>Default Sorting</option>
+                            <option>By Order</option>
+                            <option>By Price</option>
+                        </select>
+                    </div>
+                    <ul class="options-views">
+                        <li class="active"><a href="#" class="flaticon-squares"></a></li>
+                        <li><a href="#" class="flaticon-menu-3"></a></li>
+                        <li><a href="#" class="flaticon-list"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+
+            @foreach (var item in listProductByCat)
+            {
+                <!-- Product Block -->
+                <div class="product-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="/@cate.catId/Product/@item.proId"><img src="@item.Images" alt="" /></a>
+                        </div>
+                        <div class="lower-content">
+                            <a href="/@cate.catId/Product/@item.proId" class="name">@item.proName</a>
+                            <br>
+                            <a href="/@cate.catId/Product/@item.proId" class="">@item.Manufacturer.manuName</a>
+
+                            <div class="price">$@item.Price</div>
+                            <div class="price text-danger">$@(item.salePrice == 0 ? 0 : (item.Price) - (item.Price * item.salePrice/100)) 
+                            <i class="fa fa-money text-danger"></i></div>
+                            <ul class="shop-options">
+                                <li><a href="/Add-Cart-Product?productId=@item.proId&quantity=1" class="cart">Add to Cart</a></li>
+                                <li><a href="shop-single.html" class="fa fa-heart"></a></li>
+                                @*<li><a href="shop-single.html" class="fa fa-random"></a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+            <!-- Product Block -->
+
+
+        </div>
+
+        <!--Phân trang-->
+        @if (ViewBag.TotalPage > 1)
+        {
+            var pageDisplay = (int)ViewBag.MaxPage;
+            int totalPage = (int)ViewBag.TotalPage;
+            int currentPage = ((int)ViewBag.Page);
+
+            // Create numeric links
+            var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+            var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+            var link = "/Category/" + "Product/" + cate.catId;
+            
+            <nav>
+                <ul class="pagination styled-pagination text-center">
+                    @if (currentPage > ViewBag.First)
+                    {
+                        <li><a href="@link?page=@ViewBag.First" title="Trang đầu" class="first"><i class="fa fa-angle-double-left"></i></a></li>
+                        <li>
+                            <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev"><i class="fa fa-angle-left"></i></a>
+                        </li>
+
+                    }
+                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                    {
+                        if (currentPage == i)
+                        {
+
+                            <li> <a href="@link?page=@i" class="active" title="Trang @i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@link?page=@i" title="Trang @i" class="pos">@i</a></li>
+                        }
+                    }
+                    @if (currentPage < totalPage)
+                    {
+                        <li><a href="@link?page=@ViewBag.Next" class="next" title="Trang sau"><i class="fa fa-angle-right"></i></a></li>
+                        <li> <a href="@link?page=@ViewBag.Last" class="last" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                    }
+
+                </ul>
+            </nav>
+
+        }
+        else
+        {
+            <span>Không có bản ghi nào</span>
+        }
+
+
+
+        <!-- Styled Pagination -->
+        @*<ul class="styled-pagination text-center">
+            <li class="prev"><a href="#"><span class="fa fa-angle-left"></span></a></li>
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">12</a></li>
+            <li class="next"><a href="#"><span class="fa fa-angle-right"></span></a></li>
+        </ul>*@
+        <!-- End Styled Pagination -->
+
+    </div>
+</section>
+<!-- End Store Section -->

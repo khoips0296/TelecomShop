@@ -29,7 +29,18 @@ namespace Model.Dao
             return top.ToList();
         }
 
+        public Pack PackById(string packId)
+        {
+            var packById = db.Packs.SingleOrDefault(x => x.packId == packId && x.status == true);
+            return packById;
+        }
 
+
+        public List<Pack> ListPackByCate(string catId)
+        {
+            var listPackByCate = db.Packs.Where(x => x.catId == catId && x.status == true).ToList();
+            return listPackByCate;
+        }
     }
 }
 

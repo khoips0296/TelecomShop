@@ -1,0 +1,40 @@
+﻿@model  List<TelecomShop.Models.CartProductItem>
+
+
+@{ 
+    //var listCart = (List<TelecomShop.Models.CartProductItem>)ViewBag.list;
+    double total = 0;
+
+}
+<!-- Cart Box -->
+<div class="cart-box">
+    <div class="dropdown">
+        <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="flaticon-shopping-bag-2"></span><span class="total-cart">@Model.Count</span>
+        </button>
+        <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu1">
+            @foreach (var item in Model)
+            {
+                <div class="cart-product">
+                    <div class="inner">
+                        @*<div class="cross-icon"><span class="icon fa fa-remove"></span></div>*@
+                        <div class="image"><img src="@item.Product.Images" alt="" width="100%" /></div>
+                        <h3><a href="shoping-cart.html">@item.Product.proName</a></h3>
+                        <div class="quantity-text">@item.productQuantity</div>
+                        <div class="price">$@item.Product.Price</div>
+                    </div>
+                </div>
+                total += (item.Product.Price)*(item.productQuantity);
+            }
+
+
+
+            <div class="cart-total">Sub Total: <span>@total</span></div>
+            <ul class="btns-boxed">
+                <li><a href="shoping-cart.html">View Cart</a></li>
+                <li><a href="checkout.html">CheckOut</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Cart Box -->

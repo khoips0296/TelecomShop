@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TelecomShop.Common;
+using TelecomShop.Models;
 
 namespace TelecomShop.Controllers
 {
@@ -20,5 +22,19 @@ namespace TelecomShop.Controllers
 
             return View();
         }
+
+        public PartialViewResult HeaderCart()
+        {
+            var cart = Session[CommonConstants.CartProductSession];
+            var list = new List<CartProductItem>();
+            if (cart != null)
+            {
+                list = (List<CartProductItem>)cart;
+            }
+
+            ViewBag.list = list;
+            return PartialView(list);
+        }
+
     }
 }

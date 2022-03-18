@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var CartProductItem = (List<TelecomShop.Models.CartProductItem>)ViewBag.CartProductItem;
+
+    var CartPackItem = (List<TelecomShop.Models.CartPackItem>)ViewBag.CartPackItem;
+
+    double total = 0;
+}
+
+
+@section jsFooter{
+
+    <script src="~/Assets/client/js/controller/cartController.js"></script>
+}
+<!-- Page Title -->
+<section class="page-title" style="background-image: url(images/background/8.jpg)">
+    <div class="auto-container">
+        <h2>Shoping Cart</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>Shoping Cart</li>
+        </ul>
+    </div>
+</section>
+<!-- End Page Title -->
+<!-- Cart Section -->
+<section class="cart-section">
+    <div class="auto-container">
+
+        <!--Cart Outer-->
+        <div class="cart-outer">
+            <div class="table-outer">
+                <table class="cart-table">
+                    <thead class="cart-header">
+                        <tr>
+                            <th>Preview</th>
+                            <th class="price">Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in CartProductItem)
+                        {
+                            <tr>
+                                <td class="prod-column">
+                                    <div class="column-box">
+                                        <figure class="prod-thumb"><a href="#"><img src="@item.Product.Images" alt="" width="100px"></a></figure>
+                                        <h6>@item.Product.proName</h6>
+                                    </div>
+                                </td>
+                                <td class="sub-total">$@item.Product.Price</td>
+                                <td class="qty">
+                                    <div class="item-quantity">
+                                        <input class="quantity-spinner txtQuantity" data-id="@item.Product.proId" type="text" value="@item.productQuantity" name="quantity">
+                                    </div>
+                                </td>
+
+                                <td class="total-price">$@(item.Product.Price * item.productQuantity)</td>
+                                <td><a href="#" class="remove-btn btn-delete" data-id="@item.Product.proId"><span class="fa fa-times "></span></a></td>
+                            </tr>
+
+                            total += (item.Product.Price * item.productQuantity);
+                        }
+
+                        @foreach (var item in CartPackItem)
+                        {
+                            <tr>
+                                <td class="prod-column">
+                                    <div class="column-box">
+                                        <figure class="prod-thumb"><a href="#"><img src="" alt="" width="100px"></a></figure>
+                                        <h6>@item.Pack.packName</h6>
+                                    </div>
+                                </td>
+                                <td class="sub-total">$@item.Pack.Price</td>
+                                <td class="qty">
+                                    <div class="item-quantity">
+                                        <input class="quantity-spinner txtQuantityPack" data-id="@item.Pack.packId" type="text" value="@item.packQuantity" name="quantity">
+                                    </div>
+                                </td>
+
+                                <td class="total-price">$@(item.Pack.Price * item.packQuantity)</td>
+                                <td><a href="#" class="remove-btn btn-delete" data-id="@item.Pack.packId"><span class="fa fa-times "></span></a></td>
+                            </tr>
+
+                            total += (item.Pack.Price * item.packQuantity);
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Apply Coupon -->
+            <div class="apply-coupon clearfix">
+                <div class="form-group clearfix">
+                    <input type="text" name="coupon-code" value="" placeholder="Coupon Code">
+                </div>
+                <div class="form-group clearfix">
+                    <button type="button" class="theme-btn btn-style-four"><span class="txt">Apply Coupon</span></button>
+                    <button type="button" class="theme-btn btn-style-four" id="btnUpdate"><span class="txt">Update Cart</span></button>
+                    <button type="button" class="theme-btn btn-style-four" id="btnDeleteAll"><span class="txt">Delete All</span></button>
+
+                </div>
+            </div>
+
+            <h3>Cart totals</h3>
+            <!--Totals Table-->
+            <ul class="totals-table">
+                <li class="clearfix"><span class="col">Total</span><span class="col">$@total</span></li>
+
+                @*<li class="clearfix"><span class="col">Shipping Cost</span><span class="col price">$50.00</span></li>*@
+
+                @*<li class="clearfix total"><span class="col">Total</span><span class="col price">$60.00</span></li>*@
+                @*<li class="clearfix total"><span class="col">Total</span><span class="col price">$60.00</span></li>*@
+            </ul>
+            <button type="submit" class="theme-btn btn-style-four checkout-btn"><span class="txt">Proceed to Checkout</span></button>
+
+        </div>
+
+    </div>
+</section>
+<!-- End Cart Section -->

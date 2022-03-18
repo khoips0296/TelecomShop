@@ -74,6 +74,7 @@ namespace Model.Dao
             return db.Products.Find(id);
         }
 
+        
 
         public bool Delete(string id)
         {
@@ -91,7 +92,27 @@ namespace Model.Dao
             }
         }
 
+        public Product ProductById(string proId)
+        {
+            var productById = db.Products.SingleOrDefault(x => x.proId == proId && x.status == true);
+            return productById;
+        }
 
+        public List<Product> ListProductByCate(string catId, ref int totalRecord, int page, int pageSize)
+        {
+            totalRecord = db.Products.Where(x => x.catId == catId).Count();
+            var listProductByCate = db.Products.Where(x => x.catId == catId && x.status == true)
+                .OrderBy(x=>x.proId).Skip((page-1)*pageSize).Take(pageSize).ToList();
+            return listProductByCate;
+        }
+
+
+        public List<Product> RelateProduct(string catId)
+        {
+           
+            var relateProduct = db.Products.Where(x => x.catId == catId && x.status == true).OrderBy(x => x.proId).ToList();
+            return relateProduct;
+        }
 
     }
 }

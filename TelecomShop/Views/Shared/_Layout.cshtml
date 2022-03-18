@@ -26,9 +26,9 @@
     <div class="page-wrapper">
 
         <!-- Preloader -->
-        <div class="preloader">
-            <span></span>
-        </div>
+        @*<div class="preloader">
+                <span></span>
+            </div>*@
 
         <!-- Main Header -->
         <header class="main-header">
@@ -64,7 +64,7 @@
                     <div class="inner-container clearfix">
 
                         <div class="pull-left logo-box">
-                            <div class="logo"><a href="index.html"><img src="/Assets/client/images/logo.png" alt="" title=""></a></div>
+                            <div class="logo"><a href="/Home/Index"><img src="/Assets/client/images/logo.png" alt="" title=""></a></div>
                         </div>
                         <div class="nav-outer clearfix">
 
@@ -97,11 +97,11 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="#">About</a>
+                                            <a href="#">Product</a>
                                             <ul>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="price.html">Pricing</a></li>
-                                                <li><a href="movie.html">Movie's</a></li>
+                                                <li><a href="/Category/Product/LUD">Dial-Up</a></li>
+                                                <li><a href="/Category/Product/BBC">Broad Band</a></li>
+                                                <li><a href="/Category/Product/LLC">Land Line</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
@@ -142,38 +142,7 @@
                                     <div class="search-box-btn"><span class="fa fa-search"></span></div>
                                 </div>
 
-                                <!-- Cart Box -->
-                                <div class="cart-box">
-                                    <div class="dropdown">
-                                        <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-bag-2"></span><span class="total-cart">2</span></button>
-                                        <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu1">
-                                            <div class="cart-product">
-                                                <div class="inner">
-                                                    <div class="cross-icon"><span class="icon fa fa-remove"></span></div>
-                                                    <div class="image"><img src="/Assets/client/images/resource/post-thumb-1.jpg" alt="" /></div>
-                                                    <h3><a href="shoping-cart.html">Product 01</a></h3>
-                                                    <div class="quantity-text">Quantity 1</div>
-                                                    <div class="price">$99.00</div>
-                                                </div>
-                                            </div>
-                                            <div class="cart-product">
-                                                <div class="inner">
-                                                    <div class="cross-icon"><span class="icon fa fa-remove"></span></div>
-                                                    <div class="image"><img src="/Assets/client/images/resource/post-thumb-2.jpg" alt="" /></div>
-                                                    <h3><a href="shoping-cart.html">Product 02</a></h3>
-                                                    <div class="quantity-text">Quantity 1</div>
-                                                    <div class="price">$99.00</div>
-                                                </div>
-                                            </div>
-                                            <div class="cart-total">Sub Total: <span>$198</span></div>
-                                            <ul class="btns-boxed">
-                                                <li><a href="shoping-cart.html">View Cart</a></li>
-                                                <li><a href="checkout.html">CheckOut</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Cart Box -->
+                                @{Html.RenderAction("HeaderCart", "Home"); }
                                 <!-- Nav Btn -->
                                 <div class="nav-btn navSidebar-button"><span class="icon flaticon-dots-menu"></span></div>
 
@@ -209,36 +178,7 @@
                             </div>
 
                             <!-- Cart Box -->
-                            <div class="cart-box">
-                                <div class="dropdown">
-                                    <button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-bag-2"></span><span class="total-cart">2</span></button>
-                                    <div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu2">
-                                        <div class="cart-product">
-                                            <div class="inner">
-                                                <div class="cross-icon"><span class="icon fa fa-remove"></span></div>
-                                                <div class="image"><img src="/Assets/client/images/resource/post-thumb-1.jpg" alt="" /></div>
-                                                <h3><a href="shoping-cart.html">Product 01</a></h3>
-                                                <div class="quantity-text">Quantity 1</div>
-                                                <div class="price">$99.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="cart-product">
-                                            <div class="inner">
-                                                <div class="cross-icon"><span class="icon fa fa-remove"></span></div>
-                                                <div class="image"><img src="/Assets/client/images/resource/post-thumb-2.jpg" alt="" /></div>
-                                                <h3><a href="shoping-cart.html">Product 02</a></h3>
-                                                <div class="quantity-text">Quantity 1</div>
-                                                <div class="price">$99.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="cart-total">Sub Total: <span>$198</span></div>
-                                        <ul class="btns-boxed">
-                                            <li><a href="shoping-cart.html">View Cart</a></li>
-                                            <li><a href="checkout.html">CheckOut</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            @{Html.RenderAction("HeaderCart", "Home");}
                             <!-- End Cart Box -->
                             <!-- Nav Btn -->
                             <div class="nav-btn navSidebar-button"><span class="icon flaticon-dots-menu"></span></div>
@@ -310,7 +250,7 @@
         </div>
         <!-- END sidebar widget item -->
         <!-- Main Section -->
-        
+
 
         @RenderBody()
         <!-- End Store Section -->
@@ -427,7 +367,7 @@
 
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="/Assets/client/js/respond./Assets/client/js"></script><![endif]-->
-
+    @RenderSection("jsFooter", required: false)
 </body>
 
 <!-- Mirrored from html.themexriver.com/nextbit/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Mar 2022 04:37:06 GMT -->

@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var number = 10;
+    var pro = (Model.EF.Product)ViewBag.productById;
+    var cate = (Model.EF.CategoryPack)ViewBag.cate;
+    var allCate = (List<Model.EF.CategoryPack>)ViewBag.allCate;
+    var relateProduct = (List<Model.EF.Product>)ViewBag.relateProduct;
+}
+
+<!-- Page Title -->
+<section class="page-title" style="background-image: url(/Assets/client/images/background/8.jpg)">
+    <div class="auto-container">
+        <h2>Products</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>Products</li>
+        </ul>
+    </div>
+</section>
+<!-- End Page Title -->
+<!-- Shop Detail Section -->
+<section class="shop-detail-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Images Column -->
+            <div class="images-column col-lg-7 col-md-12 col-sm-12">
+                <div class="inner-column">
+
+                    <!-- Shop Gallery Tabs -->
+                    <div class="shop-gallery-tabs">
+                        <!-- Gallery Tabs -->
+                        <div class="gallery-tabs tabs-box">
+
+                            <!-- Tab Btns -->
+                            <ul class="tab-btns tab-buttons clearfix">
+                                <li data-tab="#gallery-one" class="tab-btn active-btn">
+                                    <img src="/Assets/client/images/resource/internet-2.png" alt="" width="100px"/>
+                                </li>
+                                <li data-tab="#gallery-two" class="tab-btn">
+                                    <img src="@pro.Images" alt="" width="100px"/>
+                                </li>
+                            </ul>
+
+                            <!-- Tabs Container -->
+                            <div class="tabs-content">
+
+                                <!-- Tab / Active Tab -->
+                                <div class="tab active-tab" id="gallery-one">
+                                    <div class="content">
+                                        <div class="image">
+                                            <img src="@pro.Images" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Content Column -->
+            <div class="content-column col-lg-5 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <h4>@pro.proName</h4>
+                    @*<div class="rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <a href="#">2 Reviews</a>
+                    </div>*@
+                    <div class="price">$@pro.Price</div>
+                    <div class="">$@pro.Price</div>
+
+                    <div class="text">@pro.Description</div>
+
+                    <!-- Shop Form -->
+                    <div class="shop-form">
+                        <form method="post" action="https://html.themexriver.com/nextbit/contact.html">
+
+
+                            <div class="form-group">
+                                <select class="custom-select-box">
+                                    <option>Quantity</option>
+
+                                    @for (int i = 1; i < 11; i++)
+                                    {
+                                        <option>@i</option>
+                                    }
+
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <a href="/Add-Cart?productId=@pro.proId&quantity=1" class="theme-btn btn-style-four"><span class="txt">add to cart</span></a>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- Shop List -->
+                    <ul class="shop-list">
+                        <li>Category: <a href="shoping-cart.html">Interior</a></li>
+                        <li>Tag: <a href="shoping-cart.html">Bathroom,</a> <a href="shoping-cart.html">Contemporary,</a> <a href="shoping-cart.html">Grooming</a></li>
+                    </ul>
+
+                    <!-- Social Box -->
+                    <div class="social-box">
+                        <a href="http://facebook.com/" class="icofont-facebook"></a>
+                        <a href="http://twitter.com/" class="icofont-twitter"></a>
+                        <a href="http://instagram.com/" class="icofont-instagram"></a>
+                        <a href="http://dribbble.com/" class="icofont-dribbble"></a>
+                        <a href="http://loves.com/" class="icofont-love"></a>
+                        <a href="https://www.yahoo.com/" class="icofont-yahoo"></a>
+                    </div>
+                    <!-- End Social Box -->
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--Product Info Tabs-->
+        <div class="product-info-tabs">
+            <!--Product Tabs-->
+            <div class="prod-tabs tabs-box">
+
+                <!--Tab Btns-->
+                <ul class="tab-btns tab-buttons clearfix">
+                    <li data-tab="#prod-details" class="tab-btn active-btn">Description</li>
+                    
+                    <li data-tab="#prod-reviews" class="tab-btn">Reviews</li>
+                </ul>
+
+                <!--Tabs Container-->
+                <div class="tabs-content">
+
+                    <!-- Tab / Active Tab -->
+                    <div class="tab active-tab" id="prod-details">
+                        <div class="content">
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                        </div>
+                    </div>
+
+
+                    <!--Tab-->
+                    <div class="tab" id="prod-reviews">
+                        <div class="title">2 Reviews For win Your Friends</div>
+                        <!--Reviews Container-->
+                        <div class="comments-area">
+                            <!--Comment Box-->
+                            <div class="comment-box">
+                                <div class="comment">
+                                    <div class="author-thumb"><img src="/Assets/client/images/resource/author-2.jpg" alt=""></div>
+                                    <div class="comment-inner">
+                                        <div class="comment-info clearfix">Steven Rich – Sep 17, 2021:</div>
+                                        <div class="rating">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star light"></span>
+                                        </div>
+                                        <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eius to mod tempor incididunt ut labore et dolore magna aliqua. Ut enims ad minim veniam. Aenean massa.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                        <!-- Comment Form -->
+                        <div class="shop-comment-form">
+                            <h4>Add Your Comments</h4>
+                            @*<div class="rating-box">
+                                <div class="text"> Your Rating:</div>
+                                <div class="rating">
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                </div>
+                                <div class="rating">
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                </div>
+                                <div class="rating">
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                </div>
+                                <div class="rating">
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                </div>
+                                <div class="rating">
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                    <a href="#"><span class="fa fa-star"></span></a>
+                                </div>
+                            </div>*@
+                            <form method="post" action="https://html.themexriver.com/nextbit/contact.html">
+                                <div class="row clearfix">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <label>First Name *</label>
+                                        <input type="text" name="username" placeholder="" required>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <label>Last Name*</label>
+                                        <input type="email" name="email" placeholder="" required>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <label>Email*</label>
+                                        <input type="text" name="number" placeholder="" required>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <label>Your Comments*</label>
+                                        <textarea name="message" placeholder=""></textarea>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <button class="theme-btn btn-style-four" type="submit" name="submit-form"><span class="txt">Submit now</span></button>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--End Product Info Tabs-->
+
+    </div>
+</section>
+<!-- End Shop Detail Section -->
+<!-- Related Products Section -->
+<section class="related-products-section">
+    <div class="auto-container">
+        <div class="sec-title centered">
+            <div class="separator"></div>
+            <h2>Related Products</h2>
+        </div>
+        <div class="row clearfix">
+
+
+            @foreach (var item in relateProduct)
+            {
+                <!-- Product Block -->
+                <div class="product-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image">
+                            <a href="shop-single.html"><img src="@item.Images" alt="" /></a>
+                        </div>
+                        <div class="lower-content">
+                            <a href="shop-single.html" class="name">@item.proName</a>
+                            <div class="price">$@item.Price</div>
+                            <ul class="shop-options">
+                                <li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+                                <li><a href="shop-single.html" class="fa fa-heart"></a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+        </div>
+    </div>
+</section>
+<!-- End Related Products Section -->

@@ -9,7 +9,9 @@ namespace TelecomShop.Common
     {
         public static string USER_SESSION = "USER_SESSION";
         public static string SESSION_CREDENTIALS = "SESSION_CREDENTIALS";
-        public static string CartSession = "CartSession";
+        public static string CartProductSession = "CartProductSession";
+        public static string CartPackSession = "CartPackSession";
+
 
         public static string CurrentCulture { set; get; }
     }
