@@ -61,5 +61,10 @@ namespace TelecomShop.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        public ActionResult Logout()
+        {
+            Session.Remove(CommonConstants.USER_SESSION);
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

@@ -30,6 +30,12 @@
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
+                                    @if (TempData["AlertMessage"] != null)
+                                    {
+                                        <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                                            @TempData["AlertMessage"]
+                                        </div>
+                                    }
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
@@ -39,42 +45,38 @@
                                         <div class="form-group">
                                             @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @placeholder = "Enter Email Address...", @autofocus = "autofocus" })
                                             @*<input type="email" class="form-control form-control-user"
-                                                   id="exampleInputEmail" aria-describedby="emailHelp"
-                                                   placeholder="Enter Email Address...">*@
+                id="exampleInputEmail" aria-describedby="emailHelp"
+                placeholder="Enter Email Address...">*@
                                         </div>
                                         <div class="form-group">
                                             @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Password" })
                                             @*<input type="password" class="form-control form-control-user"
-                                                   id="exampleInputPassword" placeholder="Password">*@
+                id="exampleInputPassword" placeholder="Password">*@
                                         </div>
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                @Html.CheckBoxFor(model => model.RememberMe)Remember Me
-                                                @*<input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">
-                                                    Remember
-                                                    Me
-                                                </label>*@
-                                            </div>
+                                            @Html.CheckBoxFor(model => model.RememberMe, new { @id = "gender" })
+                                            <label class="form-check-label" for="gender">
+                                                Remember Me
+                                            </label>
                                         </div>
                                         <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                                         @*<a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>*@
+                Login
+            </a>*@
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <a href="/" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                        <a href="/" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
                                     }
 
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <div class="text-center mt-4">
+                                        <a class="small" href="/">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="/admin/register">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

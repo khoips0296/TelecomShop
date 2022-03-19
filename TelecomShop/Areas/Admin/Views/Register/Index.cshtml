@@ -1,0 +1,109 @@
+﻿@model  TelecomShop.Areas.Admin.Models.RegisterModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin 2 - Login</title>
+    <!-- Custom fonts for this template-->
+    <link href="/Assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="/Assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-primary">
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Sign up</h1>
+                                    </div>
+                                    @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            <label for="inputEmail">Email</label>
+                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @placeholder = "Email", @autofocus = "autofocus" })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPassword">Password</label>
+                                                @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Password" })
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputConfirmPassword">Confirm Password</label>
+                                                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control form-control-user", @placeholder = "Confirm Password" })
+                                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputFullName">Full Name</label>
+                                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control form-control-user", @placeholder = "Full Name" })
+                                            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPhoneNumber">Phone Number</label>
+                                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control form-control-user", @placeholder = "Phone Number" })
+                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                @Html.TextBoxFor(model => model.DateStart, new { @class = "form-control form-control-user", @placeholder = "Date Start" })
+                                                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group col-md-6 pl-4">
+                                                <div class="form-check">
+                                                    @Html.CheckBoxFor(model => model.Gender, new { @class = "form-check-input", @id = "gender", @checked = "true" })
+                                                    <label class="form-check-label" for="gender">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="role">Role</label>
+                                            @Html.DropDownList("RoleId", new SelectList(@ViewBag.roleId, "roleId", "roleName"), htmlAttributes: new { @class = "form-control form-control-user", @id = "role" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="shop">Shop</label>
+                                            @Html.DropDownList("ShopId", new SelectList(@ViewBag.shopId, "shopId", "shopName"), htmlAttributes: new { @class = "form-control form-control-user", @id = "shop" })
+                                        </div>
+
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger mt-3" })
+                                        <button type="submit" class="btn btn-primary mt-3">Sign up</button>
+                                    }
+                                    <div class="text-center mt-4">
+                                        <a class="small" href="/admin/login">Already have an account?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/Assets/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="/Assets/admin/vendor/bootstrap/Assets/client/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/Assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/Assets/admin/Assets/client/js/sb-admin-2.min.js"></script>
+</body>
+</html>

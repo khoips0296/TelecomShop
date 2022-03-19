@@ -8,10 +8,10 @@ namespace TelecomShop.Areas.Admin.Models
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Input Employee Name")]
+        [Required(ErrorMessage = "Email can not be emptied!")]
         public string Email { set; get; }
 
-        [Required(ErrorMessage = "Input Password")]
+        [Required(ErrorMessage = "Password can not be emptied!")]
         public string Password { set; get; }
 
         public bool RememberMe { set; get; }
