@@ -1,0 +1,59 @@
+﻿
+@model TelecomShop.Models.RegisterModel
+
+<section class="page-title" style="background-image: url(/Assets/client/images/background/10.jpg)">
+    <div class="auto-container">
+        <h2>Register</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li>Register</li>
+        </ul>
+    </div>
+</section>
+<!--End Page Title-->
+<section class="services-page-section">
+    <div class="auto-container">
+        @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @placeholder = "Email", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword">Password</label>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputConfirmPassword">Confirm Password</label>
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control form-control-user", @placeholder = "Confirm Password" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFullName">Full Name</label>
+                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control form-control-user", @placeholder = "Full Name" })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="inputPhoneNumber">Phone Number</label>
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control form-control-user", @placeholder = "Phone Number" })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    @Html.CheckBoxFor(model => model.Gender, new { @class = "form-check-input", @id = "gender", @checked="true" })
+                    <label class="form-check-label" for="gender">
+                        Male
+                    </label>
+                </div>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger mt-3" })
+            <button type="submit" class="btn btn-primary">Sign up</button>
+        }
+    </div>
+</section>

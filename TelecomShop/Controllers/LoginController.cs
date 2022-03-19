@@ -1,41 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TelecomShop.Common;
 using Model.EF;
-
+using TelecomShop.Models;
 using Model.Dao;
-using TelecomShop.Areas.Admin.Models;
+using TelecomShop.Common;
 
-namespace TelecomShop.Areas.Admin.Controllers
+namespace TelecomShop.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Admin/Login
+        private TelecomShopDbContext db = new TelecomShopDbContext();
+
+        // GET: Login
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Login(LoginModel model)
+        // POST: Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                var dao = new EmployeeDao();
+                var dao = new MemberDao();
                 var result = dao.Login(model.Email, Encryptor.MD5Hash(model.Password));
+                if (string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password))
+                {
+                    ModelState.AddModelError("", "Email and password can not be emptied!");
+                }
                 if (result == 1)
                 {
-                    var emp = dao.GetById(model.Email);
-                    var userSession = new EmployeeLogin();
-                    userSession.EmployeeID = emp.empId;
-                    userSession.EmployeeName = emp.email;
+                    var member = dao.GetById(model.Email);
+                    var userSession = new MemberLogin();
+                    userSession.MemberID = member.memberId;
+                    userSession.MemberName = member.email;
                     //userSession.GroupID = user.GroupID;
                     //var listCredentials = dao.GetListCredential(model.UserName);
 
                     //Session.Add(CommonConstants.SESSION_CREDENTIALS, listCredentials);
-                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    Session.Add(CommonConstants.MEMBER_SESSION, userSession);
                     return RedirectToAction("Index", "Home");
                 }
                 else if (result == 0)
@@ -50,16 +61,18 @@ namespace TelecomShop.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("", "Invalid password");
                 }
-                //else if (result == -3)
-                //{
-                //    ModelState.AddModelError("", "Tài khoản của bạn không có quyền đăng nhập.");
-                //}
                 else
                 {
                     ModelState.AddModelError("", "Login fail");
                 }
             }
-            return View("Index");
+
+            return View(model);
+        }
+        public ActionResult Logout()
+        {
+            Session.Remove(CommonConstants.MEMBER_SESSION);
+            return Redirect(ControllerContext.HttpContext.Request.UrlReferrer.ToString());
         }
     }
 }
