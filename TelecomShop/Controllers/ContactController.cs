@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace TelecomShop.Controllers
 {
-    public class testController : Controller
+    public class ContactController : Controller
     {
-        // GET: test
+        // GET: Contact
         public ActionResult Index()
         {
             return View();

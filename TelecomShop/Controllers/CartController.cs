@@ -1,4 +1,5 @@
 ﻿using Model.Dao;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using TelecomShop.Models;
 
 namespace TelecomShop.Controllers
 {
-    public class CartController : BaseController
+    public class CartController : Controller
     {
         private const string CartProductSession = "CartProductSession";
         private const string CartPackSession = "CartPackSession";
@@ -236,6 +237,102 @@ namespace TelecomShop.Controllers
                 status = true
             });
         }
+
+
+        [HttpGet]
+        public ActionResult Payment()
+        {
+            var cartPro = Session[CartProductSession];
+            var listPro = new List<CartProductItem>();
+            if (cartPro != null)
+            {
+                listPro = (List<CartProductItem>)cartPro;
+            }
+            ViewBag.CartProductItem = listPro;
+
+            var cartPack = Session[CartPackSession];
+            var listPack = new List<CartPackItem>();
+            if (cartPack != null)
+            {
+                listPack = (List<CartPackItem>)cartPack;
+            }
+            ViewBag.CartPackItem = listPack;
+            return View();
+        }
+
+        //[HttpPost]
+        //public ActionResult Payment(string shipName, string mobile, string address, string email)
+        //{
+            
+        //    var order = new Bill();
+        //    var bill = new BillDao().ListAll();
+        //    var finalString ="";
+
+        //    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        //    var stringChars = new char[8];
+        //    var random = new Random();
+
+        //    for (int i = 0; i < stringChars.Length; i++)
+        //    {
+        //        stringChars[i] = chars[random.Next(chars.Length)];
+        //    }
+        //    foreach (var item in bill)
+        //    {
+        //        if (stringChars.ToString() != item.billId)
+        //        {
+        //            finalString = new String(stringChars);
+
+        //        }
+        //    }
+
+        //    order.dateOrder = DateTime.Now;
+        //    order.dateInstall = DateTime.Now;
+        //    order.billId =finalString;
+        //    order.
+
+
+        //    try
+        //    {
+        //        var id = new OrderDao().Insert(order);
+        //        var cart = (List<CartItem>)Session[CartSession];
+        //        var detailDao = new Model.Dao.OrderDetailDao();
+        //        decimal total = 0;
+        //        foreach (var item in cart)
+        //        {
+        //            var orderDetail = new OrderDetail();
+        //            orderDetail.ProductID = item.Product.ID;
+        //            orderDetail.OrderID = id;
+        //            orderDetail.Price = item.Product.Price;
+        //            orderDetail.Quantity = item.Quantity;
+        //            detailDao.Insert(orderDetail);
+
+        //            total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
+        //        }
+        //        string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/template/neworder.html"));
+
+        //        content = content.Replace("{{CustomerName}}", shipName);
+        //        content = content.Replace("{{Phone}}", mobile);
+        //        content = content.Replace("{{Email}}", email);
+        //        content = content.Replace("{{Address}}", address);
+        //        content = content.Replace("{{Total}}", total.ToString("N0"));
+        //        var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+        //        new MailHelper().SendMail(email, "Đơn hàng mới từ OnlineShop", content);
+        //        new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", content);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //ghi log
+        //        return Redirect("/loi-thanh-toan");
+        //    }
+        //    return Redirect("/hoan-thanh");
+        //}
+
+        public ActionResult Success()
+        {
+            return View();
+        }
+
 
 
     }

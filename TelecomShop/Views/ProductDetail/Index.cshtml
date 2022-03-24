@@ -1,0 +1,91 @@
+﻿@model PagedList.IPagedList<Model.EF.ProductAddDetail>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Product Detail Manager
+}
+
+@section jsFooter{
+
+    <script src="/Assets/admin/Assets/client/js/empController.js"></script>
+}
+
+
+@using (Html.BeginForm("Index", "Product Detail", FormMethod.Get))
+{
+    <div class="row">
+        <div class="input-group mb-3 col-md-4">
+            <input type="text" class="form-control bg-white border-0 small" placeholder="Search for..."
+                   aria-label="Search" aria-describedby="basic-addon2" value="@ViewBag.SearchString" name="searchString">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+        <div class="input-group mb-3 col-md-3">
+            <a href="/Admin/ProductDetail/Create" class="btn btn-primary" type="submit">
+                <i class="fas fa-plus fa-sm"></i>  Add new
+            </a>
+        </div>
+    </div>
+}
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Bill id</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>#</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.proAddDetailId">
+
+                            <td>@item.proAddDetailId</td>
+                            <td>@item.Bill.billId</td>
+                            <td>@item.Product.proId</td>                           
+                            <td>@item.Quantity</td>
+                            <td>@item.Total</td>                           
+                            <td>
+
+                                @Html.ActionLink("Edit", "Edit", new { id = @item.proAddDetailId })
+                                |
+                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.proAddDetailId }, new AjaxOptions
+                           {
+                               Confirm = "Do you delete record?",
+                               OnComplete = "$('#row_" + @item.proAddDetailId + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@
             window.location.href = "/";
         });
         $('#btnPayment').off('click').on('click', function () {
-            window.location.href = "/thanh-toan";
+            window.location.href = "/Payment";
         });
         $('#btnUpdate').off('click').on('click', function () {
             var listProduct = $('.txtQuantity');

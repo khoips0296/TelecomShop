@@ -1,0 +1,287 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var CartProductItem = (List<TelecomShop.Models.CartProductItem>)ViewBag.CartProductItem;
+
+    var CartPackItem = (List<TelecomShop.Models.CartPackItem>)ViewBag.CartPackItem;
+
+    double total = 0;
+}
+
+
+@section jsFooter{
+
+    <script src="~/Assets/client/js/controller/cartController.js"></script>
+}
+<!-- Page Title -->
+<section class="page-title" style="background-image: url(images/background/8.jpg)">
+    <div class="auto-container">
+        <h2>Shoping Cart</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>Shoping Cart</li>
+        </ul>
+    </div>
+</section>
+<!-- End Page Title -->
+<!-- Cart Section -->
+<section class="cart-section">
+    <div class="auto-container">
+
+        <!--Cart Outer-->
+        <div class="cart-outer">
+            <div class="table-outer">
+                <table class="cart-table">
+                    <thead class="cart-header">
+                        <tr>
+                            <th>Preview</th>
+                            <th class="price">Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in CartProductItem)
+                        {
+                            <tr>
+                                <td class="prod-column">
+                                    <div class="column-box">
+                                        <figure class="prod-thumb"><a href="#"><img src="@item.Product.Images" alt="" width="100px"></a></figure>
+                                        <h6>@item.Product.proName</h6>
+                                    </div>
+                                </td>
+                                <td class="sub-total">$@item.Product.Price</td>
+                                <td class="qty">
+                                    <div class="item-quantity">
+                                        <input class="quantity-spinner txtQuantity" data-id="@item.Product.proId" type="text" value="@item.productQuantity" name="quantity">
+                                    </div>
+                                </td>
+
+                                <td class="total-price">$@(item.Product.Price * item.productQuantity)</td>
+                                <td><a href="#" class="remove-btn btn-delete" data-id="@item.Product.proId"><span class="fa fa-times "></span></a></td>
+                            </tr>
+
+                            total += (item.Product.Price * item.productQuantity);
+                        }
+
+                        @foreach (var item in CartPackItem)
+                        {
+                            <tr>
+                                <td class="prod-column">
+                                    <div class="column-box">
+                                        <figure class="prod-thumb"><a href="#"><img src="" alt="" width="100px"></a></figure>
+                                        <h6>@item.Pack.packName</h6>
+                                    </div>
+                                </td>
+                                <td class="sub-total">$@item.Pack.Price</td>
+                                <td class="qty">
+                                    <div class="item-quantity">
+                                        <input class="quantity-spinner txtQuantityPack" data-id="@item.Pack.packId" type="text" value="@item.packQuantity" name="quantity">
+                                    </div>
+                                </td>
+
+                                <td class="total-price">$@(item.Pack.Price * item.packQuantity)</td>
+                                <td><a href="#" class="remove-btn btn-delete" data-id="@item.Pack.packId"><span class="fa fa-times "></span></a></td>
+                            </tr>
+
+                            total += (item.Pack.Price * item.packQuantity);
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Apply Coupon -->
+            @*<div class="apply-coupon clearfix">
+                    <div class="form-group clearfix">
+                        <input type="text" name="coupon-code" value="" placeholder="Coupon Code">
+                    </div>
+                    <div class="form-group clearfix">
+                        <button type="button" class="theme-btn btn-style-four"><span class="txt">Apply Coupon</span></button>
+                        <button type="button" class="theme-btn btn-style-four" id="btnUpdate"><span class="txt">Update Cart</span></button>
+                        <button type="button" class="theme-btn btn-style-four" id="btnDeleteAll"><span class="txt">Delete All</span></button>
+
+                    </div>
+                </div>*@
+
+            <h3>Cart totals</h3>
+            <!--Totals Table-->
+            <ul class="totals-table">
+                <li class="clearfix"><span class="col">Total</span><span class="col">$@total</span></li>
+
+                @*<li class="clearfix"><span class="col">Shipping Cost</span><span class="col price">$50.00</span></li>*@
+
+                @*<li class="clearfix total"><span class="col">Total</span><span class="col price">$60.00</span></li>*@
+                @*<li class="clearfix total"><span class="col">Total</span><span class="col price">$60.00</span></li>*@
+            </ul>
+            <button type="submit" class="theme-btn btn-style-four checkout-btn"><span class="txt">Proceed to Checkout</span></button>
+
+        </div>
+
+    </div>
+</section>
+<!-- End Cart Section -->
+
+
+<!-- Checkout Page -->
+
+<div class="checkout-page">
+    <div class="auto-container">
+
+        <!--Default Links-->
+        <ul class="default-links">
+            <li>Returning customer? <a href="contact.html">Click here to login</a></li>
+        </ul>
+
+        <!--Billing Details-->
+        <div class="billing-details">
+            <div class="shop-form">
+                @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+                {
+                    <div class="row clearfix">
+                        <div class="col-lg-7 col-md-12 col-sm-12">
+
+                            <div class="sec-title"><h2>Billing Details</h2></div>
+                            <div class="billing-inner">
+                                <div class="row clearfix">
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div class="field-label">First name <sup>*</sup></div>
+                                        <input type="text" name="field-name" value="" placeholder="First Name">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div class="field-label">Last name <sup>*</sup></div>
+                                        <input type="text" name="field-name" value="" placeholder="Last Name">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Company name </div>
+                                        <input type="text" name="field-name" value="" placeholder="Company name">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Address <sup>*</sup></div>
+                                        <input type="email" name="field-name" value="" placeholder="Street Address">
+                                        <input class="address-two" type="email" name="field-name" value="" placeholder="Apartment, Suit unit etc (optional)">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Town / City <sup>*</sup></div>
+                                        <input type="text" name="field-name" value="" placeholder="Town /City">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div class="field-label">State / Country <sup>*</sup> </div>
+                                        <select name="country">
+                                            <option>Select an option</option>
+                                            <option>Pakistan</option>
+                                            <option>USA</option>
+                                            <option>CANADA</option>
+                                            <option>INDIA</option>
+                                        </select>
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div class="field-label">Postcode / Zip <sup>*</sup></div>
+                                        <input type="text" name="code" value="" placeholder="Postcode / Zip">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div class="field-label">Email Address <sup>*</sup></div>
+                                        <input type="text" name="field-name" value="" placeholder="Email Address">
+                                    </div>
+
+                                    <!--Form Group-->
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <div class="field-label">Phone <sup>*</sup></div>
+                                        <input type="text" name="field-name" value="" placeholder="Select an option">
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="check-box"><input type="checkbox" name="shipping-option" id="account-option"> &ensp; <label for="account-option">Creat an account?</label></div>
+                                    </div>
+
+                                    <div class="form-group sec-title col-md-12 col-xs-12"><h2>Ship to Different Address</h2></div>
+
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Order Notes</div>
+                                        <textarea placeholder="Note about your order. e.g. special note for delivery"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-md-12 col-sm-12">
+                            <div class="sec-title"><h2>Your Order</h2></div>
+                            <div class="shop-order-box">
+                                <ul class="order-list">
+                                    <li>Prodcut<span>TOTAL</span></li>
+                                    <li>TV & Streaming<span>$@total</span></li>
+                                    
+                                    <li>Shipping And Handling<span>Free Shipping</span></li>
+                                    <li class="total">TOTAL<span class="dark">$@total</span></li>
+                                </ul>
+
+
+                                <!--Place Order-->
+                                <div class="place-order">
+                                    <!--Payment Options-->
+                                    <div class="payment-options">
+                                        <ul>
+                                            <li>
+                                                <div class="radio-option">
+                                                    <input type="radio" name="payment-group" id="payment-2" checked>
+                                                    <label for="payment-2">
+                                                        <strong>Direct Bank Transfer</strong>
+                                                        <span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="radio-option">
+                                                    <input type="radio" name="payment-group" id="payment-1">
+                                                    <label for="payment-1">
+                                                        <strong>Cheque Payment</strong>
+                                                        <span class="small-text">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="radio-option">
+                                                    <input type="radio" name="payment-group" id="payment-3">
+                                                    <label for="payment-3"><strong>Paypal</strong><img src="images/resource/paypal.jpg" alt="" /> <a href="#" class="what-paypall">What is PayPal?</a></label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <button type="submit" class="theme-btn btn-style-four"><span class="txt">Place Order</span></button>
+
+                                </div>
+                                <!--End Place Order-->
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                }
+                @*/<form method="post" action="https://html.themexriver.com/nextbit/checkout.html"></form>*@
+
+            </div>
+
+        </div><!--End Billing Details-->
+    </div>

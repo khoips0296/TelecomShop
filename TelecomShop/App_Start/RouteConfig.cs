@@ -64,6 +64,33 @@ namespace TelecomShop
             );
 
             routes.MapRoute(
+                name: "Payment",
+                url: "Payment",
+                defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+                namespaces: new[] { "TelecomShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Blog",
+                url: "Blog",
+                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "TelecomShop.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Blog- Detail",
+                url: "Blog/{id}",
+                defaults: new { controller = "Blog", action = "Detail", id = UrlParameter.Optional },
+                namespaces: new[] { "TelecomShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Contact",
+                url: "Contact",
+                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "TelecomShop.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
