@@ -49,6 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\download_chorme\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -166,9 +169,6 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -3296,24 +3296,24 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
-    <Content Include="Views\BillBuyProductOnly\Create.cshtml" />
-    <Content Include="Views\BillBuyProductOnly\Edit.cshtml" />
-    <Content Include="Views\BillBuyProductOnly\Index.cshtml" />
-    <Content Include="Views\Bill\Create.cshtml" />
-    <Content Include="Views\Bill\Edit.cshtml" />
-    <Content Include="Views\Bill\Index.cshtml" />
-    <Content Include="Views\CategoryPack\Create.cshtml" />
-    <Content Include="Views\CategoryPack\Edit.cshtml" />
-    <Content Include="Views\CategoryPack\Index.cshtml" />
-    <Content Include="Views\Manufacturer\Create.cshtml" />
-    <Content Include="Views\Manufacturer\Edit.cshtml" />
-    <Content Include="Views\Manufacturer\Index.cshtml" />
-    <Content Include="Views\Payment\Create.cshtml" />
-    <Content Include="Views\Payment\Edit.cshtml" />
-    <Content Include="Views\Payment\Index.cshtml" />
-    <Content Include="Views\ProductDetail\Create.cshtml" />
-    <Content Include="Views\ProductDetail\Edit.cshtml" />
-    <Content Include="Views\ProductDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BillBuyProductOnly\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BillBuyProductOnly\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BillBuyProductOnly\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Bill\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryPack\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryPack\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryPack\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacturer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Payment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>

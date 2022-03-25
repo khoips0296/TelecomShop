@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace TelecomShop.Areas.Admin.Controllers
 {
-    public class BillBuyProductOnlyController : Controller
+    public class BillBuyProductOnlyController : BaseController
     {
         TelecomShopDbContext db = new TelecomShopDbContext();
         // GET: Admin/BillBuyProductOnly

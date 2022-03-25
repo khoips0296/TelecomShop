@@ -19,6 +19,10 @@ namespace TelecomShop.Controllers
         // GET: Register
         public ActionResult Index()
         {
+            if (Session[CommonConstants.MEMBER_SESSION] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

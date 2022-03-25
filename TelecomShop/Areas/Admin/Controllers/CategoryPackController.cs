@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace TelecomShop.Controllers
+namespace TelecomShop.Areas.Admin.Controllers
 {
-    public class CategoryPackController : Controller
+    public class CategoryPackController : BaseController
     {
         TelecomShopDbContext db = new TelecomShopDbContext();
         // GET: Admin/CategoryPack

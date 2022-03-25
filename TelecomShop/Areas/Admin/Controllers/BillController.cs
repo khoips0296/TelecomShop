@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace TelecomShop.Areas.Admin.Controllers
 {
-    public class BillController : Controller
+    public class BillController : BaseController
     {
         
         TelecomShopDbContext db = new TelecomShopDbContext();

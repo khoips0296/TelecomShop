@@ -16,6 +16,10 @@ namespace TelecomShop.Areas.Admin.Controllers
         // GET: Admin/Login
         public ActionResult Index()
         {
+            if (Session[CommonConstants.USER_SESSION] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

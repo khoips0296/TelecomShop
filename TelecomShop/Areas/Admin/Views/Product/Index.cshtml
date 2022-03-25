@@ -61,7 +61,10 @@
                         <td>@item.proName</td>
                         <td>@item.proCode</td>
                         @*<td>@(item.gender == true ? "Male" : "Female")</td>*@
-                        <td><img src="@Url.Content(item.Images)" alt="Image" style="height:100px;width:100px;" /></td>
+                        @if (item.Images != null)
+                        {
+                            <td><img src="@Url.Content(item.Images)" alt="Image" style="height:100px;width:100px;" /></td>
+                        }
                         <td>@item.CategoryPack.catName</td>
                         <td>@item.Manufacturer.manuName</td>
                         <td>@item.dateOfManu</td>
